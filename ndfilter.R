@@ -1,25 +1,25 @@
-# Correcci髇 de vi馿teo y dominantes en fotograf韆 con R
-# www.datosimagensonido.com
+# Correcci贸n de vi帽eteo y dominantes en fotograf铆a con R
+# www.overfitting.net
 
 # Revelado lineal con DCRAW: dcraw -v -r 1 1 1 1 -o 0 -4 -T *.ARW
 
-# Librer韆 im醙enes en 16 bits
+# Librer铆a im谩genes en 16 bits
 library(tiff)
 
-# Leemos patr髇 de vi馿teo
+# Leemos patr贸n de vi帽eteo
 vignet=readTIFF("vignet.tiff", native=F, convert=F)
 
 # Normalizamos cada canal
 for (i in 1:3) vignet[,,i]=vignet[,,i]/max(vignet[,,i])
 
-# Aplicamos correcci髇 a la escena y guardamos normalizando
-# NOTA: ning鷑 p韝el de vignet puede valer 0 en ning鷑 canal
+# Aplicamos correcci贸n a la escena y guardamos normalizando
+# NOTA: ning煤n p铆xel de vignet puede valer 0 en ning煤n canal
 scene.out=readTIFF("scene.tiff")/vignet
 writeTIFF(scene.out/max(scene.out), "scene.out.tif",
           bits.per.sample=16, compression="LZW")
 
-# Mapa de correcci髇
-vignetlog=log(vignet)/log(2)  # Exposici髇 relativa en EV
+# Mapa de correcci贸n
+vignetlog=log(vignet)/log(2)  # Exposici贸n relativa en EV
 
 library(fields)
 image.plot(vignetlog[,,1])  # Mapa del canal R
