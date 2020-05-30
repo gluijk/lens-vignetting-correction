@@ -1,5 +1,6 @@
 # Corrección de viñeteo y dominantes en fotografía con R
 # www.overfitting.net
+# https://www.overfitting.net/2017/03/correccion-de-vineteo-y-dominantes-en.html
 
 # Revelado lineal con DCRAW: dcraw -v -r 1 1 1 1 -o 0 -4 -T *.ARW
 
@@ -24,5 +25,3 @@ vignetlog=log(vignet)/log(2)  # Exposición relativa en EV
 library(fields)
 image.plot(vignetlog[,,1])  # Mapa del canal R
 contour(vignetlog[,,1], add=T, levels=c(-1,-2,-3), method="edge")
-
-
